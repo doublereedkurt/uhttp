@@ -11,5 +11,6 @@ def hello_world_app(environ, start_response):
 	return [str(time.time())]
 
 
+# TODO: figure out how to prevent this pringing to stdout like crazy
 server = wsgiref.simple_server.make_server('127.0.0.1', port, hello_world_app)
 server.serve_forever()

@@ -91,15 +91,15 @@ def _client_helper(inner):
 	for i in range(1000):
 		s = time.time()
 		t2 = inner()
-		durations.append(time.time() - s)
-		print t2 - s, time.time() - t2
+		durations.append(1000 * (time.time() - s))
 	durations.sort()
-	return {
-		'mean': sum(durations) / len(durations),
-		'median': durations[500],
-		'95%': durations[950],
-		'max': durations[-1]
-	}
+        fmt = '{0:0.2f}'.format
+	return [
+		('mean', fmt(sum(durations) / len(durations))),
+		('median', fmt(durations[500])),
+		('95%', fmt(durations[950])),
+		('max', fmt(durations[-1]))
+	]
 
 
 def _cleanup():
